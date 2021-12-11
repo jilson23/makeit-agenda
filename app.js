@@ -18,6 +18,8 @@ app.get('/api/info', (req, res) => {
     res.send(send);
 })
 
+connectDB();
+
 const PORT = 3001
 
 app.listen(PORT, () =>{
