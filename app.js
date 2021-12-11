@@ -1,6 +1,7 @@
 const express = require('express')
-const morgan = require('morgan');
 
+const expressConfig = require('./config/express');
+const connectDB = require('./config/database');
 const routes = require('./routes');
 
 const app = express();
@@ -8,12 +9,7 @@ const app = express();
 // para obtener el request.body
 app.use(express.json())
 
-morgan.token('body', req => {
-    return JSON.stringify(req.body)
-})
-
-const valmorgan = ':method :url :status :res[content-length] - :response-time ms :body';
-app.use(morgan(valmorgan));
+expressConfig(app);
 
 app.get('/api/info', (req, res) => {
     const PersonsLength = persons.length
